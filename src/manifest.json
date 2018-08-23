@@ -8,8 +8,14 @@
     "default_popup": "popup.html",
     "default_icon": "icon-34.png"
   },
+  "content_security_policy": "script-src 'self' https://www.dropbox.com/; object-src 'self'",
   "permissions": [
-    "bookmarks"
+    "bookmarks",
+    "storage",
+     "https://*.dropbox.com/*"
+  ],
+  "web_accessible_resources": [
+    "chrome_oauth_receiver.html"
   ],
   "icons": {
     "128": "icon-128.png"

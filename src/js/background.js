@@ -19,4 +19,17 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.bookmarks.onChildrenReordered.addListener(() => {
     chrome.extension.getBackgroundPage().console.log("Bookmark reordered");
   });
+
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    chrome.extension
+      .getBackgroundPage()
+      .console.log("receivedMessage ", request);
+
+    if (request.type == "dropboxConnectToken")
+      chrome.storage.sync.set({ dropboxConnectToken: request.content }, () => {
+        chrome.extension
+          .getBackgroundPage()
+          .console.log("dropboxConnectToken is set to " + request.content);
+      });
+  });
 });
